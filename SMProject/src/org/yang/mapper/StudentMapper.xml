@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ <mapper namespace="org.yang.mapper.StudentMapper">
+ 	<select id="queryStudentByStuNo" databaseId="mysql" parameterType="int" resultType="Student">
+ 		select * from student where stuno = #{stuNo}
+ 	</select>
+ 	<insert id="addStudent" parameterType="Student" databaseId="mysql">s
+ 		insert into student(stuname,stuage) values(#{stuName} , #{stuAge})
+ 	</insert>
+ </mapper>

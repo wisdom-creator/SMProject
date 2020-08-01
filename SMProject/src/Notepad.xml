@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--Spring整合Mybatis 
+	通过spring产生Mybatis最终操作需要的动态mapper对象(例：StudentMapper)
+ 	有三种方法：
+ 		1、在dao层 继承SqlSessionDaoSupport类
+ 			一般是dao层实现mapper.xml，为了符合mybatis mapper.xml 和mapper.java 接口一般放在
+ 			一个package的原则，将dao的interface IStudentDao改名为StudentMapper，并且放到mapper包下
+ 			
+ -->
+ <!-- 开发基于注解的spring
+ 		@Configuration(注解类)
+ 		向springIOC中添加bean
+	 			@Bean
+				public Student student() {
+					return new Student();
+				}
+		
+  -->

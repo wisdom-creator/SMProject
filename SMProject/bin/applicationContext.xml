@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.2.xsd">
+	
+	<!--加载db.properties配置文件  -->
+	<bean id="config" class="org.springframework.beans.factory.config.PreferencesPlaceholderConfigurer">
+		<property name="locations">
+			<array>
+				<value>classpath:db.properties</value>
+			</array>
+		</property>
+	</bean>
+	<!-- 配置数据库信息（替代Mybatis配置文件conf.xml） -->
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" >
+		<property name="driverClassName" value="${mysql.driver}"></property>		
+		<property name="url" value="${mysql.url}"></property>		
+		<property name="username" value="${mysql.username}"></property>		
+		<property name="password" value="${mysql.password}"></property>		
+		<property name="maxIdle" value="${mysql.maxIdle}"></property>		
+		<!-- <property name="defaultAutoCommit" value="true"></property>		 -->
+		<!--<property name="maxActive" value=""></property>	  -->	
+	</bean>
+	<!--在spring IOC容器中创建Mybatis 核心类SqlSessionFactory  -->
+	<bean  id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource"></property>
+		<!-- 在spring中加载mybatis配置文件 -->
+		<!-- <property name="configLocation" value="classpath:conf.xml"></property> -->
+		<!-- 加载mapper文件 -->
+		<property name="typeAliasesPackage" value="org.yang.entity"></property>
+		<property name="mapperLocations" value="org/yang/mapper/*.xml"></property>
+	</bean>
+	
+	<!--将IStudentDao层（StudentMapper） 加到IOC中 -->
+	<bean id="studentMapper" class="org.yang.dao.impl.StudentDaoImpl">
+		<!--加载SqlSessionFactory  -->
+		<p<!-- roperty name="sqlSessionFactory" ref="sqlSessionFactory"></property> -->
+	</bean>
+	<!-- 将 StudentService 加到IOC中-->
+	<bean id="studentService" class="org.yang.service.impl.StudentServiceImpl">
+		<property name="studentMapper" ref="studentMapper"></property>
+	</bean>
+	
+	
+	<!--基于注解的spring  -->
+</beans>

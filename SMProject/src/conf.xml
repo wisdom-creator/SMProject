@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<!-- Mybatis 配置文件 -->
+<configuration>
+
+	
+	<!-- 为对象类添加别名 -->
+	<typeAliases>
+		<!-- 批量处理 -->
+		<package name="org.yang.entity"/>
+	</typeAliases>
+	
+	
+	<!-- 加载数据库映射文件 -->
+	<mappers>
+		<!-- 批量加载 -->
+		<mapper resource="org/yang/mapper/StudentMapper.xml"/>
+	</mappers>
+</configuration>
